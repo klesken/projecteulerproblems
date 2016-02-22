@@ -23,10 +23,10 @@ import javafx.stage.Stage;
  */
 public class ProjectEulerProblems extends Application {
     
-    Problem26 problem26;
-    Problem27 problem27;
-    Problem50 problem50;
-    Problem44 problem;
+    //Problem26 problem26;
+    //Problem27 problem27;
+    //Problem50 problem50;
+    //Problem44 problem;
     
     @Override
     public void start(Stage primaryStage) {
@@ -39,7 +39,7 @@ public class ProjectEulerProblems extends Application {
         
         Button[] buttons = createButtons();
         
-        bottomHBox.getChildren().addAll(Arrays.copyOf(buttons, 1));
+        bottomHBox.getChildren().addAll(buttons);
         
         mainBox.getChildren().addAll(buttons[0], bottomHBox);
         
@@ -52,7 +52,7 @@ public class ProjectEulerProblems extends Application {
         //root.setAlignment(btn3, Pos.BOTTOM_CENTER);
         //root.setAlignment(btn4, Pos.BOTTOM_CENTER);
         
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root, 800, 600);
         
         primaryStage.setTitle("Project Euler Solver");
         primaryStage.setScene(scene);
@@ -67,7 +67,8 @@ public class ProjectEulerProblems extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                (problem = new Problem44()).solve();
+                Problem49 problem = new Problem49();
+                problem.solve();
                 problem.solution();
             }
         });
@@ -78,9 +79,9 @@ public class ProjectEulerProblems extends Application {
            
             @Override
             public void handle(ActionEvent event){
-                //System.out.println("Hello World!");
-                (problem26 = new Problem26()).solve();
-                problem26.solution();
+                Problem26 problem = new Problem26();
+                problem.solve();
+                problem.solution();
             }
         });
         
@@ -90,8 +91,9 @@ public class ProjectEulerProblems extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                (problem27 = new Problem27()).solve();
-                problem27.solution();
+                Problem27 problem = new Problem27();
+                problem.solve();
+                problem.solution();
             }
         });
         
@@ -101,8 +103,9 @@ public class ProjectEulerProblems extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                (problem50 = new Problem50()).solve();
-                problem50.solution();
+                Problem50 problem = new Problem50();
+                problem.solve();
+                problem.solution();
             }
         });
 
@@ -112,7 +115,8 @@ public class ProjectEulerProblems extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                (problem = new Problem44()).solve();
+                Problem44 problem = new Problem44();
+                problem.solve();
                 problem.solution();
             }
         });

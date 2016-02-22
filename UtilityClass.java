@@ -5,6 +5,7 @@
  */
 package projecteulerproblems;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -89,6 +90,44 @@ public final class UtilityClass {
         return true;
         
 
+    }
+    
+    //Use only for small factorials
+    public static final int factorial(int n){
+        int prod = 1;
+        for(int i = n; i > 0; i--){
+            prod *= i;
+        }
+        return prod;
+    }
+    
+    //Used for problem 20
+    private static final BigInteger factorial(long n){
+        BigInteger sum = new BigInteger("1");
+        long counter = 2;
+        while(counter <= n){
+            sum = sum.multiply(BigInteger.valueOf(counter));
+            counter++;
+        }
+        
+        return sum;
+        
+    }
+    
+    //Used for problem 20
+    public static final void factorialSum(int n){
+        BigInteger sum = new BigInteger("0");
+        BigInteger fact = factorial((long)n);
+        System.out.println(fact);
+        while(fact.compareTo(BigInteger.ZERO) > 0){
+            sum = sum.add(fact.remainder(BigInteger.TEN));
+            fact = fact.divide(BigInteger.TEN);
+            
+        }
+        
+        System.out.println("Factorial("+n+") = " + sum);
+        
+        
     }
     
 }

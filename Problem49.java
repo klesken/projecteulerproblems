@@ -98,7 +98,7 @@ public class Problem49 implements ProjectEulerProblem{
                 s += String.valueOf(permutations[indices[i]]) + " ";
                 //System.out.print(permutations[i] + "");
             }
-            s += " | " + indices[0] + " , " + indices[1] + " , " + indices[2];
+            //s += " | " + indices[0] + " , " + indices[1] + " , " + indices[2];
             return s;
         }
         

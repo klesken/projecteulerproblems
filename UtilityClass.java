@@ -14,6 +14,19 @@ import java.util.Arrays;
  * @author vikka994
  */
 public final class UtilityClass {
+    //Simple millisecond timer to check time to init, calculate and solve problems
+    private static long timer;
+    public static void startTimer(){
+        timer = System.currentTimeMillis();
+    }
+    public static long endTimer(){
+        return (System.currentTimeMillis() - timer);
+    }
+    public static void endTimer(ProjectEulerProblem problem){
+        System.out.println("Problem " + problem.problem() + " took " + (System.currentTimeMillis() - timer) + "ms to complete");
+    }
+    
+    
     public static boolean[] isPrime;
     static{
         isPrime = createPrimes();

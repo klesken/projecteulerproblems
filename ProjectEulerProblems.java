@@ -60,18 +60,18 @@ public class ProjectEulerProblems extends Application {
     }
     
     private Button[] createButtons(){
+        
+        Button[] buttons = new Button[7];
                 
         Button btn = new Button();
-        btn.setText("Current Problem, 49");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                Problem49 problem = new Problem49();
-                problem.solve();
-                problem.solution();
-            }
+        btn.setText("Problem 46");
+        btn.setOnAction((ActionEvent event) -> {
+            Problem46 problem;
+            problem = new Problem46();
+            problem.solve();
+            problem.solution();
         });
+        buttons[6] = btn;
         
         Button btn2 = new Button();
         btn2.setText("Problem 26");
@@ -84,6 +84,7 @@ public class ProjectEulerProblems extends Application {
                 problem.solution();
             }
         });
+        buttons[1] = btn2;
         
         Button btn3 = new Button();
         btn3.setText("Problem 27");
@@ -96,6 +97,7 @@ public class ProjectEulerProblems extends Application {
                 problem.solution();
             }
         });
+        buttons[2] = btn3;
         
         Button btn4 = new Button();
         btn4.setText("Problem 50");
@@ -108,6 +110,7 @@ public class ProjectEulerProblems extends Application {
                 problem.solution();
             }
         });
+        buttons[3] = btn4;
 
         Button btn5 = new Button();
         btn5.setText("Problem 44");
@@ -120,9 +123,36 @@ public class ProjectEulerProblems extends Application {
                 problem.solution();
             }
         });
+        buttons[4] = btn5;
+        
+        Button btn6 = new Button();
+        btn6.setText("Problem 49");
+        btn6.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                Problem49 problem = new Problem49();
+                problem.solve();
+                problem.solution();
+            }
+        });
+        buttons[5] = btn6;
+        
+        buttons[0] = new Button();
+        buttons[0].setText("Current Problem, 45");
+        buttons[0].setOnAction( (ActionEvent event) -> {
+            Problem45 problem;
+            
+            problem = new Problem45();
+            problem.solve();
+            problem.solution();
+            //System.out.println("Problem 45 took " + UtilityClass.endTimer() + " ms to complete.");
+        });
+        
         
         //int numberOfButtons = 5;
-        Button[] buttons = {btn, btn2, btn3, btn4, btn5};
+        //Button[] buttons = {btn, btn2, btn3, btn4, btn5, btn6};
+        
         return buttons;
         
     }

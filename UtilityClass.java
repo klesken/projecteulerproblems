@@ -143,4 +143,17 @@ public final class UtilityClass {
         
     }
     
+    public static final int[] fibonacci(int numberOfFibs){
+        int[] fibs = new int[numberOfFibs];
+        if(numberOfFibs <= 2) return new int[]{1,2};
+        
+        fibs[0] = 1;
+        fibs[1] = 2;
+        for(int i = 2; i < numberOfFibs; i++){
+            fibs[i] = fibs[i-2] + fibs[i-1];
+        }
+        
+        return fibs;
+    }
+    
 }

@@ -33,8 +33,8 @@ public final class UtilityClass {
     }
     //Creating primes via The Prime Sieve
     private static boolean[] createPrimes(){
-        //Size of array and therefore the maximum prime checked is this number
-        int nPrimes = 1000000;
+        //Size of array and therefore the maximum prime checked is this number-1
+        int nPrimes = 10000000;
         
         System.out.println("Building prime array...");
         
@@ -59,7 +59,7 @@ public final class UtilityClass {
     }
     
     //Get all primes < max
-    public static final Integer[] getPrimes(int max){
+    public static final int[] getPrimes(int max){
         ArrayList<Integer> tempArrList = new ArrayList<Integer>();
         
         int index = 0;
@@ -70,7 +70,12 @@ public final class UtilityClass {
             }
         }
         
-        return tempArrList.toArray(new Integer[tempArrList.size()]);
+        //LOOK THIS UP MORE CLOSELY!!!!!!!!!!
+        return tempArrList.stream().mapToInt(i -> i).toArray();
+        ////////////////////////////////////
+        
+        
+        //return tempArrList.toArray(new Integer[tempArrList.size()]);
         
     }
     public static final Long[] getPrimes(long max){
@@ -88,6 +93,7 @@ public final class UtilityClass {
         return tempArrList.toArray(tempArr);
                 
     }
+    
     
     public static final boolean isPrime(int n){
         

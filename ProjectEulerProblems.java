@@ -61,12 +61,12 @@ public class ProjectEulerProblems extends Application {
     
     private Button[] createButtons(){
         
-        Button[] buttons = new Button[8];
+        Button[] buttons = new Button[9];
                 
         Button btn = new Button();
         btn.setText("Problem 46");
         btn.setOnAction((ActionEvent event) -> {
-            Problem46 problem;
+            ProjectEulerProblem problem;
             problem = new Problem46();
             problem.solve();
             problem.solution();
@@ -79,7 +79,7 @@ public class ProjectEulerProblems extends Application {
            
             @Override
             public void handle(ActionEvent event){
-                Problem26 problem = new Problem26();
+                ProjectEulerProblem problem = new Problem26();
                 problem.solve();
                 problem.solution();
             }
@@ -92,7 +92,7 @@ public class ProjectEulerProblems extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                Problem27 problem = new Problem27();
+                ProjectEulerProblem problem = new Problem27();
                 problem.solve();
                 problem.solution();
             }
@@ -105,7 +105,7 @@ public class ProjectEulerProblems extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                Problem50 problem = new Problem50();
+                ProjectEulerProblem problem = new Problem50();
                 problem.solve();
                 problem.solution();
             }
@@ -118,7 +118,7 @@ public class ProjectEulerProblems extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                Problem44 problem = new Problem44();
+                ProjectEulerProblem problem = new Problem44();
                 problem.solve();
                 problem.solution();
             }
@@ -131,7 +131,7 @@ public class ProjectEulerProblems extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                Problem49 problem = new Problem49();
+                ProjectEulerProblem problem = new Problem49();
                 problem.solve();
                 problem.solution();
             }
@@ -141,19 +141,29 @@ public class ProjectEulerProblems extends Application {
         buttons[7] = new Button();
         buttons[7].setText("Problem 45");
         buttons[7].setOnAction( (ActionEvent event) -> {
-            Problem45 problem;
+            ProjectEulerProblem problem;
             
             problem = new Problem45();
             problem.solve();
             problem.solution();
         });        
         
-        buttons[0] = new Button();
-        buttons[0].setText("Current Problem, 2");
-        buttons[0].setOnAction( (ActionEvent event) -> {
-            Problem2 problem;
+        buttons[8] = new Button();
+        buttons[8].setText("Problem 2");
+        buttons[8].setOnAction( (ActionEvent event) -> {
+            ProjectEulerProblem problem;
             
             problem = new Problem2();
+            problem.solve();
+            problem.solution();
+        });
+        
+        buttons[0] = new Button();
+        buttons[0].setText("Current Problem, 3");
+        buttons[0].setOnAction( (ActionEvent event) -> {
+            ProjectEulerProblem problem;
+            
+            problem = new Problem3();
             problem.solve();
             problem.solution();
         });

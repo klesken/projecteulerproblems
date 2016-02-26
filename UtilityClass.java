@@ -27,6 +27,10 @@ public final class UtilityClass {
     }
     
     
+    public static long square(long n){
+        return n*n;
+    }
+    
     public static boolean[] isPrime;
     static{
         isPrime = createPrimes();
@@ -78,6 +82,21 @@ public final class UtilityClass {
         //return tempArrList.toArray(new Integer[tempArrList.size()]);
         
     }
+    public static final int getNthPrime(int nth){
+        
+        int counter = 0;
+        int i = 0;
+        while(true){
+            if(isPrime[i]){
+                counter++;
+                if(counter == nth) return i;
+            }
+            i++;
+        }
+        
+        
+        
+    }    
     public static final Long[] getPrimes(long max){
         ArrayList<Long> tempArrList = new ArrayList<Long>();
         
@@ -120,7 +139,17 @@ public final class UtilityClass {
         return prod;
     }
     
-    //Used for problem 20
+    //Used for problem 5
+    public static final BigInteger factorialBig(long n){
+        BigInteger prod = BigInteger.ONE;
+        for(long i = n; i > 0; i--){
+            prod = prod.multiply(BigInteger.valueOf(i));
+        }
+        return prod;
+    }
+    
+    
+    //Used for problem 20 
     private static final BigInteger factorial(long n){
         BigInteger sum = new BigInteger("1");
         long counter = 2;

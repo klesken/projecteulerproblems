@@ -6,12 +6,14 @@
 package projecteulerproblems;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -32,19 +34,23 @@ public class ProjectEulerProblems extends Application {
     public void start(Stage primaryStage) {
         
         //New vertical box
-        VBox mainBox = new VBox(1);
+        //VBox mainBox = new VBox(1);
         
         //New horizontal box
-        HBox bottomHBox = new HBox(1);
+        //HBox bottomHBox = new HBox(1);
+        //HBox middleHBox = new HBox(1);
         
         Button[] buttons = createButtons();
         
-        bottomHBox.getChildren().addAll(buttons);
+        //bottomHBox.getChildren().addAll(Arrays.copyOfRange(buttons, 1, 8));
+        //bottomHBox.getChildren().addAll(Arrays.copyOfRange(buttons, 8, buttons.length));
         
-        mainBox.getChildren().addAll(buttons[0], bottomHBox);
+        //mainBox.getChildren().addAll(buttons[0], middleHBox, bottomHBox);
         
-        StackPane root = new StackPane();
-        root.getChildren().addAll(mainBox);
+        //StackPane root = new StackPane();
+        FlowPane root = new FlowPane();
+        //root.setMaxWidth(800);
+        root.getChildren().addAll(buttons);
         
         //root.setAlignment(bottomHBox, Pos.BOTTOM_RIGHT);
         //root.setAlignment(btn, Pos.TOP_LEFT);
@@ -61,10 +67,11 @@ public class ProjectEulerProblems extends Application {
     
     private Button[] createButtons(){
         
-        Button[] buttons = new Button[9];
+        final int numberOfButtons = 14;
+        Button[] buttons = new Button[numberOfButtons];
                 
         Button btn = new Button();
-        btn.setText("Problem 46");
+        btn.setText("46");
         btn.setOnAction((ActionEvent event) -> {
             ProjectEulerProblem problem;
             problem = new Problem46();
@@ -73,8 +80,9 @@ public class ProjectEulerProblems extends Application {
         });
         buttons[6] = btn;
         
+        
         Button btn2 = new Button();
-        btn2.setText("Problem 26");
+        btn2.setText("26");
         btn2.setOnAction(new EventHandler<ActionEvent>(){
            
             @Override
@@ -87,7 +95,7 @@ public class ProjectEulerProblems extends Application {
         buttons[1] = btn2;
         
         Button btn3 = new Button();
-        btn3.setText("Problem 27");
+        btn3.setText("27");
         btn3.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
@@ -100,7 +108,7 @@ public class ProjectEulerProblems extends Application {
         buttons[2] = btn3;
         
         Button btn4 = new Button();
-        btn4.setText("Problem 50");
+        btn4.setText("50");
         btn4.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
@@ -113,7 +121,7 @@ public class ProjectEulerProblems extends Application {
         buttons[3] = btn4;
 
         Button btn5 = new Button();
-        btn5.setText("Problem 44");
+        btn5.setText("44");
         btn5.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
@@ -126,7 +134,7 @@ public class ProjectEulerProblems extends Application {
         buttons[4] = btn5;
         
         Button btn6 = new Button();
-        btn6.setText("Problem 49");
+        btn6.setText("49");
         btn6.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
@@ -139,7 +147,7 @@ public class ProjectEulerProblems extends Application {
         buttons[5] = btn6;
         
         buttons[7] = new Button();
-        buttons[7].setText("Problem 45");
+        buttons[7].setText("45");
         buttons[7].setOnAction( (ActionEvent event) -> {
             ProjectEulerProblem problem;
             
@@ -149,7 +157,7 @@ public class ProjectEulerProblems extends Application {
         });        
         
         buttons[8] = new Button();
-        buttons[8].setText("Problem 2");
+        buttons[8].setText("2");
         buttons[8].setOnAction( (ActionEvent event) -> {
             ProjectEulerProblem problem;
             
@@ -158,9 +166,9 @@ public class ProjectEulerProblems extends Application {
             problem.solution();
         });
         
-        buttons[0] = new Button();
-        buttons[0].setText("Current Problem, 3");
-        buttons[0].setOnAction( (ActionEvent event) -> {
+        buttons[9] = new Button();
+        buttons[9].setText("3");
+        buttons[9].setOnAction( (ActionEvent event) -> {
             ProjectEulerProblem problem;
             
             problem = new Problem3();
@@ -168,10 +176,84 @@ public class ProjectEulerProblems extends Application {
             problem.solution();
         });
         
+        buttons[10] = new Button();
+        buttons[10].setText("5");
+        buttons[10].setOnAction( (ActionEvent event) -> {
+            ProjectEulerProblem problem;
+            
+            problem = new Problem5();
+            problem.solve();
+            problem.solution();
+        });
+        
+        buttons[11] = new Button();
+        buttons[11].setText("6");
+        buttons[11].setOnAction( (ActionEvent event) -> {
+            ProjectEulerProblem problem;
+            
+            problem = new Problem6();
+            problem.solve();
+            problem.solution();
+        });
+        
+        buttons[12] = new Button();
+        buttons[12].setText("7");
+        buttons[12].setOnAction( (ActionEvent event) -> {
+            ProjectEulerProblem problem;
+            
+            problem = new Problem7();
+            problem.solve();
+            problem.solution();
+        });
+        
+        buttons[13] = new Button();
+        buttons[13].setText("8");
+        buttons[13].setOnAction( (ActionEvent event) -> {
+            ProjectEulerProblem problem;
+            
+            problem = new Problem8();
+            problem.solve();
+            problem.solution();
+        });
+        
+        buttons[0] = new Button();
+        buttons[0].setText("Current Problem, 9");
+        buttons[0].setOnAction( (ActionEvent event) -> {
+            ProjectEulerProblem problem;
+            
+            problem = new Problem9();
+            problem.solve();
+            problem.solution();
+        });          
+        
         
         //int numberOfButtons = 5;
         //Button[] buttons = {btn, btn2, btn3, btn4, btn5, btn6};
-        
+        //System.out.println(buttons[0].getText());
+        Arrays.sort(buttons, new Comparator<Button>(){
+            @Override
+            public int compare(Button t1, Button t2) {
+                String s1 = t1.getText();//.chars().toArray();
+                String s2 = t2.getText();//.chars().toArray();
+                
+                int i1; //= Integer.parseInt(s1);
+                int i2; //= Integer.parseInt(s2);
+                
+                if((s1.chars().toArray())[0] == 'C'){ //Current problem, #
+                    //i1 = 0;
+                    return -1;
+                }
+                else if((s2.chars().toArray())[0] == 'C'){ //Current problem, #
+                    //i2 = 0;
+                    return 1;
+                }
+                
+                i1 = Integer.parseInt(s1);
+                i2 = Integer.parseInt(s2);
+                
+                return(i1 - i2);
+            }
+        });
         return buttons;
         
     }

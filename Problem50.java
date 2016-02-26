@@ -82,7 +82,7 @@ public class Problem50 implements ProjectEulerProblem{
     private void anotherSolution(){
         int maxPrime = 1000000;
         
-        Integer[] primeArr = UtilityClass.getPrimes(maxPrime);
+        int[] primeArr = UtilityClass.getPrimes(maxPrime);
         final int indexMax = primeArr.length;
         long[] primeSums = new long[indexMax + 1]; //+1 to have the first element be 0
         primeSums[0] = 0;

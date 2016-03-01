@@ -67,7 +67,7 @@ public class ProjectEulerProblems extends Application {
     
     private Button[] createButtons(){
         
-        final int numberOfButtons = 14;
+        final int numberOfButtons = 15;
         Button[] buttons = new Button[numberOfButtons];
                 
         Button btn = new Button();
@@ -216,15 +216,25 @@ public class ProjectEulerProblems extends Application {
             problem.solution();
         });
         
-        buttons[0] = new Button();
-        buttons[0].setText("Current Problem, 9");
-        buttons[0].setOnAction( (ActionEvent event) -> {
+        buttons[14] = new Button();
+        buttons[14].setText("9");
+        buttons[14].setOnAction( (ActionEvent event) -> {
             ProjectEulerProblem problem;
             
             problem = new Problem9();
             problem.solve();
             problem.solution();
-        });          
+        });
+        
+        buttons[0] = new Button();
+        buttons[0].setText("Current Problem, 502");
+        buttons[0].setOnAction( (ActionEvent event) -> {
+            ProjectEulerProblem problem;
+            
+            problem = new Problem502();
+            problem.solve();
+            problem.solution();
+        });              
         
         
         //int numberOfButtons = 5;

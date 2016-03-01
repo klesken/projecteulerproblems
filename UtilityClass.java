@@ -30,10 +30,16 @@ public final class UtilityClass {
     public static long square(long n){
         return n*n;
     }
-    
+
+
+/*
+    If you are to use this array make sure to set UtilityClass.createPrimes = true, as the very first use of UtilityClass
+    */    
+    public static boolean createPrimes = false;
     public static boolean[] isPrime;
     static{
-        isPrime = createPrimes();
+        if(createPrimes)
+            isPrime = createPrimes();
     }
     //Creating primes via The Prime Sieve
     private static boolean[] createPrimes(){

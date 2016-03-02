@@ -209,14 +209,33 @@ public class Problem502 implements ProjectEulerProblem{
 
 /*
 Castle building plan:
-Place the smallest building blocks first.
-Build horizontally first.
+    Create "base" blocks, i.e. the largest to smallest possible blocks on each row
+    First fill the grid with the largest possible combination
+    Then make the upper most block smaller 
+    When it is so small that removing it destroys condition (5) 
+    move to the previous row and restart the algorithm while always adding a block on top to revive condition (5)
+    
+    
+    Alternative algorithm, (trying this first):
+    Divide the grid into smaller grids and work your way up with placing blocks.
+    i.e. a 3x3 grid contains 1x1, 1x2, 2x1, etc.
+    1x2 grid only has 1 solution since height must always be H
+    2x2 grid only has 2 solutions since height must always be H and a space between two blocks on same row must exist
+    ...
+    
+    
+    Work out exactly how the size of grids within a grid interact with the whole grid.
+    IMPORTANT to remember the (6) condition
+    
 
-    
-End iteration when castle has been completely filled.
-    We know:
+    We know(probably):
+    This problem can probably be solved very elegantly with combinatoric math
     All castles start with 1 block(the bottom one)
+    A "base block" has a fixed amount of ways to build on top of it
+    Since the base block always exist, we can say that a 10x10 grid is actually a 10x9 grid with an uneven number of blocks to begin
     
+    
+    DO ALL COMPUTATIONS WITHIN CASTLE CLASS!!!
 */
 /*
 1.Blocks can be placed on top of other blocks as long as nothing sticks out past the edges or hangs out over open space.
@@ -232,6 +251,9 @@ End iteration when castle has been completely filled.
     private class Castle{
         
         
+        /*
+        Build it up
+        */
         
         /**
          * Tries to add a block to the GameGrid

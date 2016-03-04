@@ -49,7 +49,11 @@ public class Problem502 implements ProjectEulerProblem{
     public void solve() {
         UtilityClass.startTimer();
         
-        Unit test = new Unit(4);
+        int width = 4;
+        int height = 2;
+        long numberOfValidCastles;
+        mainGrid = new GameGrid(width, height);
+        numberOfValidCastles = mainGrid.solveGrid();
         
         
         UtilityClass.endTimer(this);
@@ -93,22 +97,14 @@ public class Problem502 implements ProjectEulerProblem{
                 return false;
             }
             final Unit other = (Unit) obj;
-            if (this.unit != other.unit) {
-                return false;
-            }
-            return true;
+            return this.unit == other.unit;
         }
         
         
         
     }
     
-//    private class GridElement{
-//        //private final int elementType = 0;
-//        public int type(){
-//            return 0; //default type
-//        }
-//    }
+
     enum GridType{ EMPTYSPACE, BLOCK, SPACEAFTERBLOCK };
     private interface GridElement{
         public GridType type();
@@ -178,6 +174,16 @@ public class Problem502 implements ProjectEulerProblem{
     */
     private class GameGrid{
         private final Unit width, height;
+        private long numberOfValidCastles = 0;
+        
+        private Block[] possibleBlocks; //If width=10 we will have blocks of width 10,9,8,...,2,1
+        
+        /*
+        if calculatedCastles[x][y] > 0 then a castle of size x width and y height has been calculated
+        calculatedCastles doesn't take into account conditions:
+        (3)
+        */
+        private long[][] calculatedCastles;
         
         /*
         GameGrid visualization
@@ -197,8 +203,87 @@ public class Problem502 implements ProjectEulerProblem{
             this.width = new Unit(width);
             this.height = new Unit(height);
             gameMatrix = new EmptySpace[width][height];
-            gameMatrix[0][0] = new Block(width); //Fill the bottom row with 1 block            
+            gameMatrix[0][0] = new Block(width); //Fill the bottom row with 1 block
+            calculatedCastles = new long[width+1][height+1];
+            possibleBlocks = new Block[width];
+            for(int i = 0; i < width; i++){
+                possibleBlocks[i] = new Block(width - i);
+            }
         }
+        
+        public long solveGrid(){
+            //for(long x = 1; x <= width.value(); x++){
+                //for(long y = 1; y <= height.value(); y++){
+                    
+                //}
+            //}
+
+            /*
+            Rewrite whole file with a cleaner mind
+            
+            When dividing up the grid need to keep track of if the smaller grid solution is
+            even or uneven. Since even+even and uneven+uneven = even.
+            But even+uneven = uneven.
+            
+            Also if the solution reaches height H etc.
+            
+            So basically create a Solution() class which holds:
+            grid width
+            grid height
+            how many solutions are even
+            how many solutions are uneven
+            how many solutions are even and reaches height H
+            how many solutions are uneven and reaches height H
+            
+            only use array, if two items are horizontally next to eachother [X][Z] and [Y][Z] where Y = X+1 then they are part of the same block
+            
+            So basically start with 1xMAX_HEIGHT, then go to 2xMAX_HEIGHT
+            1xMAX_HEIGHT will solve all "grids" between 1x1 and 1xMAX_HEIGHT
+            
+            When you go onto 2xMAX_HEIGHT you will already know every 1xX and can use that information
+            to move forward. When you then know 2xMAX_HEIGHT, you go to 3xMAX_HEIGHT etc.
+            
+            So one loop focuses on moving forward horizontally and one focuses on how you can combine already known
+            horizontal sizes to produce different "sub-castles", i.e. 4xMAX_HEIGHT can contain 1 2xY and 1 1xY and combine this 2 different ways
+            and it can of course also contain a 4xY.
+            
+            
+            
+            
+            
+            */
+ 
+            //Create base cases for calculating how many castles are possible
+            calculatedCastles[1][1] = 1;
+            calculatedCastles[1][2] = 1;
+            calculatedCastles[2][1] = 2;
+            calculatedCastles[2][2] = 2;
+            
+            //Partition grid into smaller grids, until you reach one of the base cases, then recursively start solving
+            int wIndex = (int)width.value();
+            int hIndex = (int)height.value();
+            long sum = 0;
+            while(calculatedCastles[(int)width.value()][(int)height.value()] == 0){
+                //The super loop that is supposed to do it all
+                
+                if(calculatedCastles[wIndex][hIndex] > 0){
+                    sum += calculatedCastles[wIndex][hIndex];
+                }
+                else{
+                    wIndex /= 2;
+                    
+                }
+                
+                
+            }
+            
+            
+            return numberOfValidCastles;
+        }
+        
+        
+        
+        
         
 
         
@@ -209,14 +294,33 @@ public class Problem502 implements ProjectEulerProblem{
 
 /*
 Castle building plan:
-Place the smallest building blocks first.
-Build horizontally first.
+    Create "base" blocks, i.e. the largest to smallest possible blocks on each row
+    First fill the grid with the largest possible combination
+    Then make the upper most block smaller 
+    When it is so small that removing it destroys condition (5) 
+    move to the previous row and restart the algorithm while always adding a block on top to revive condition (5)
+    
+    
+    Alternative algorithm, (trying this first):
+    Divide the grid into smaller grids and work your way up with placing blocks.
+    i.e. a 3x3 grid contains 1x1, 1x2, 2x1, etc.
+    1x2 grid only has 1 solution since height must always be H
+    2x2 grid only has 2 solutions since height must always be H and a space between two blocks on same row must exist
+    ...
+    
+    
+    Work out exactly how the size of grids within a grid interact with the whole grid.
+    IMPORTANT to remember the (6) condition
+    
 
-    
-End iteration when castle has been completely filled.
-    We know:
+    We know(probably):
+    This problem can probably be solved very elegantly with combinatoric math
     All castles start with 1 block(the bottom one)
+    A "base block" has a fixed amount of ways to build on top of it
+    Since the base block always exist, we can say that a 10x10 grid is actually a 10x9 grid with an uneven number of blocks to begin
     
+    
+    DO ALL COMPUTATIONS WITHIN CASTLE CLASS!!!
 */
 /*
 1.Blocks can be placed on top of other blocks as long as nothing sticks out past the edges or hangs out over open space.
@@ -228,10 +332,35 @@ End iteration when castle has been completely filled.
 
 
     
-    */     
+    */
+    
+    private static GameGrid mainGrid = null;
+    
     private class Castle{
         
+        private Unit width, height;
         
+        
+        Castle(int width, int height){
+            this.width = new Unit(width);
+            this.height = new Unit(height);
+        }
+        
+
+        
+        /*
+        Creates the next castle in line
+        
+        */
+        public boolean nextCastle(){
+            
+            return true;
+        }
+        
+        
+        /*
+        Grid into smaller grid solution
+        */
         
         /**
          * Tries to add a block to the GameGrid
